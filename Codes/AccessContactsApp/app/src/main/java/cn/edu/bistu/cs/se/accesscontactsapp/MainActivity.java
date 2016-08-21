@@ -1,6 +1,8 @@
 package cn.edu.bistu.cs.se.accesscontactsapp;
 
+import android.Manifest;
 import android.content.ContentResolver;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -17,6 +19,10 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG="MyTag";
+
+
+    // call this method only if you are on 6.0 and up, otherwise call doGetWifi()
+
 
     private ContentResolver resolver;
     @Override
@@ -43,44 +49,48 @@ public class MainActivity extends AppCompatActivity {
         Button buttonUpdate=(Button)findViewById(R.id.buttonUpdate);
         Button buttonQuery=(Button)findViewById(R.id.buttonQuery);
 
-        //得到全部联系人
-        buttonAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Cursor cursor=resolver.query(ContactsContract.Contacts.CONTENT_URI,null,null,null,null);
-                while(cursor.moveToNext()){
+        if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS}, 0x12345);
+        } else {
 
-                    String msg;
-                    //id
-                    String id=cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    msg="id:"+id;
+            //得到全部联系人
+            buttonAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Cursor cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+                    while (cursor.moveToNext()) {
 
-                    //name
-                    String name=cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                    msg=msg+" name:"+name;
+                        String msg;
+                        //id
+                        String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                        msg = "id:" + id;
 
-                    //phone
-                    Cursor phoneNumbers=resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +"="+id,null,null);
-                    while(phoneNumbers.moveToNext()){
-                        String phoneNumber=phoneNumbers.getString(phoneNumbers.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        msg=msg+" phone:"+phoneNumber;
+                        //name
+                        String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                        msg = msg + " name:" + name;
+
+                        //phone
+                        Cursor phoneNumbers = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + id, null, null);
+                        while (phoneNumbers.moveToNext()) {
+                            String phoneNumber = phoneNumbers.getString(phoneNumbers.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            msg = msg + " phone:" + phoneNumber;
+                        }
+
+                        //email
+                        Cursor emails = resolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null, ContactsContract.CommonDataKinds.Email.CONTACT_ID + "=" + id, null, null);
+                        while (emails.moveToNext()) {
+                            String email = emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                            msg = msg + " email:" + email;
+                        }
+
+                        Log.v(TAG, msg);
+
+
                     }
-
-                    //email
-                    Cursor emails=resolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,null,ContactsContract.CommonDataKinds.Email.CONTACT_ID +"="+id,null,null);
-                    while(emails.moveToNext()){
-                        String email=emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
-                        msg=msg+" email:"+email;
-                    }
-
-                    Log.v(TAG,msg);
-
-
 
                 }
-
-            }
-        });
+            });
+        }
 
         //增加联系人
         buttonInsert.setOnClickListener(new View.OnClickListener() {
