@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StartActivityApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_start_another">启动第二个Activity</string>
+    <string name="button_return">返回</string>
+    <string name="title_activity_another">AnotherActivity</string>
+</resources>

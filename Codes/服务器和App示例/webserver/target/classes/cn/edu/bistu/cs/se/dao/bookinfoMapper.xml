@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.bistu.cs.se.dao.bookinfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.bistu.cs.se.model.bookinfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="binfo" property="binfo" jdbcType="VARCHAR" />
+    <result column="auinfo" property="auinfo" jdbcType="VARCHAR" />
+    <result column="collects" property="collects" jdbcType="INTEGER" />
+    <result column="rewards" property="rewards" jdbcType="DOUBLE" />
+    <result column="publish" property="publish" jdbcType="TINYINT" />
+    <result column="words" property="words" jdbcType="INTEGER" />
+    <result column="update" property="update" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, `name`, author, binfo, auinfo, collects, rewards, publish, words, `update`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from book_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectbook" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from book_info
+    where `name` like #{name,jdbcType=CHAR}
+  </select>
+  <select id="selectall" resultMap="BaseResultMap" >
+    select *
+    from book_info
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from book_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.bistu.cs.se.model.bookinfo" >
+    insert into book_info (ID, name, author, 
+      binfo, auinfo, collects, 
+      rewards, publish, words, 
+      update)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{binfo,jdbcType=VARCHAR}, #{auinfo,jdbcType=VARCHAR}, #{collects,jdbcType=INTEGER}, 
+      #{rewards,jdbcType=DOUBLE}, #{publish,jdbcType=TINYINT}, #{words,jdbcType=INTEGER}, 
+      #{update,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.bistu.cs.se.model.bookinfo" >
+    insert into book_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="binfo != null" >
+        binfo,
+      </if>
+      <if test="auinfo != null" >
+        auinfo,
+      </if>
+      <if test="collects != null" >
+        collects,
+      </if>
+      <if test="rewards != null" >
+        rewards,
+      </if>
+      <if test="publish != null" >
+        publish,
+      </if>
+      <if test="words != null" >
+        words,
+      </if>
+      <if test="update != null" >
+        update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="binfo != null" >
+        #{binfo,jdbcType=VARCHAR},
+      </if>
+      <if test="auinfo != null" >
+        #{auinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="collects != null" >
+        #{collects,jdbcType=INTEGER},
+      </if>
+      <if test="rewards != null" >
+        #{rewards,jdbcType=DOUBLE},
+      </if>
+      <if test="publish != null" >
+        #{publish,jdbcType=TINYINT},
+      </if>
+      <if test="words != null" >
+        #{words,jdbcType=INTEGER},
+      </if>
+      <if test="update != null" >
+        #{update,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.bistu.cs.se.model.bookinfo" >
+    update book_info
+    <set >
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="binfo != null" >
+        binfo = #{binfo,jdbcType=VARCHAR},
+      </if>
+      <if test="auinfo != null" >
+        auinfo = #{auinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="collects != null" >
+        collects = #{collects,jdbcType=INTEGER},
+      </if>
+      <if test="rewards != null" >
+        rewards = #{rewards,jdbcType=DOUBLE},
+      </if>
+      <if test="publish != null" >
+        publish = #{publish,jdbcType=TINYINT},
+      </if>
+      <if test="words != null" >
+        words = #{words,jdbcType=INTEGER},
+      </if>
+      <if test="update != null" >
+        `update` = #{update,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.bistu.cs.se.model.bookinfo" >
+    update book_info
+    set `name` = #{name,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      binfo = #{binfo,jdbcType=VARCHAR},
+      auinfo = #{auinfo,jdbcType=VARCHAR},
+      collects = #{collects,jdbcType=INTEGER},
+      rewards = #{rewards,jdbcType=DOUBLE},
+      publish = #{publish,jdbcType=TINYINT},
+      words = #{words,jdbcType=INTEGER},
+      `update` = #{update,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
