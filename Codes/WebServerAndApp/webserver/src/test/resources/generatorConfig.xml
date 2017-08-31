@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 配置Run As Maven build : Goals 参数 : mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
+<!-- 配置 tableName,使用 Run As Maven build 生成 dao model 层 -->
+<generatorConfiguration>
+	<!-- 配置文件路径 -->
+	<properties url="${mybatis.generator.generatorConfig.properties}" />
+
+	<!--数据库驱动包路径 -->
+	<classPathEntry location="${drive.class.path}" />
+
+	<context id="MySqlTables" targetRuntime="MyBatis3">
+		<!--关闭注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!--数据库连接信息 -->
+		<jdbcConnection driverClass="${jdbc.driver}"
+			connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">
+		</jdbcConnection>
+
+		<!-- 实体定义地址 -->
+		<javaModelGenerator targetPackage="${model.package}"
+			targetProject="${target.project}">
+			<property name="enableSubPackages" value="ture" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- sql的配置文件定义 -->
+		<sqlMapGenerator targetPackage="${xml.mapper.package}"
+			targetProject="${target.project}">
+			<property name="enableSubPackages" value="ture" />
+		</sqlMapGenerator>
+
+		<!-- DAO定义 XMLMAPPER是xml的配置方式，还有ANNOTabelMapper的是注解方式 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="${dao.package}" targetProject="${target.project}">
+			<property name="enableSubPackages" value="ture" />
+		</javaClientGenerator>
+
+
+
+
+
+		<table tableName="book_info" domainObjectName="bookinfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+
+
+	</context>
+</generatorConfiguration>
