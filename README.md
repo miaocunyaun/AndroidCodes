@@ -1,30 +1,62 @@
 # Android
 Android课程演示代码
 
-## AccessContactsApp
-## AlertDialogApp
-## AlertDialogCustomApp
-## AlertDialogItemsApp
-## AlertDialogMultiChoiceItemsApp
-## AlertDialogSingleChoiceItemsApp
-## BindServiceApp
+## 布局
+### FrameLayoutApp
+### LinearLayoutApp
+
+## 控件
+
+## 对话框
+### AlertDialogApp
+### AlertDialogCustomApp
+### AlertDialogItemsApp
+### AlertDialogMultiChoiceItemsApp
+### AlertDialogSingleChoiceItemsApp
+
+
+
+
+## 菜单
+## PopupMenuApp
+
+## 服务Service
+### BindServiceApp
+
+## 广播
 ## BroadcastApp
-## CameraApp
+
+## 文件
+### FileApp
+
+
+## 数据库访问
+### DatabaseApp
+
+## 相机
+### CameraApp
+
+## AccessContactsApp
+
+
+
+
+
 ## CheckBoxApp
 ## ContactsObserver
 ## ContentProvider
 ## ContextMenuApp
-## DatabaseApp
+
 ## DoubleBufferingApp
-## FileApp
+
 ## FragmentApp
-## FrameLayoutApp
+
 ## GraphicsApp
 ## GridLayoutApp
 ## HelloWorld
 ## IntentServiceApp
 ## LinearGradientApp
-## LinearLayoutApp
+
 ## MatrixApp
 ## MediaPlayerApp
 ## MyContactsApp
@@ -32,7 +64,7 @@ Android课程演示代码
 ## MyWordsApp
 ## OptionsMenuApp
 ## PlotApp
-## PopupMenuApp
+
 ## RadioButtonApp
 ## RecyclerViewApp
 ## RelativeLayoutApp
@@ -49,6 +81,8 @@ Android课程演示代码
 ## ThreadApp
 ## ToggleButtonApp
 ## TransitionApp
+
+
 ## WebServerAndApp
 演示服务器和App之间的交互。
 
