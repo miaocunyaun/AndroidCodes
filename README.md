@@ -44,6 +44,7 @@ Android课程演示代码
 
 
 
+
 ## 7.服务Service
 ### ServiceApp
 ### BindServiceApp
@@ -65,7 +66,9 @@ Android课程演示代码
 
 ## 12.数据库访问
 ### DatabaseApp
+实现了对SQLite的基本访问，包括增、删、改、查等。
 ### MyWordsApp
+在DatabaseApp的基础上，实现了ContentProvider。
 
 
 ## 13.内容提供者(ContentProvider)
