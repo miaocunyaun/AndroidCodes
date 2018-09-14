@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         registerForContextMenu(list);
 
 
+
+
         //创建SQLiteOpenHelper对象，注意第一次运行时，此时数据库并没有被创建
         mDbHelper = new WordsDBHelper(this);
 
