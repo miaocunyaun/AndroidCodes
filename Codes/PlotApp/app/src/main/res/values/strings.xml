@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">PlotApp</string>
-    <string name="action_settings">Settings</string>
+    <string name="button_plot">绘制</string>
 </resources>

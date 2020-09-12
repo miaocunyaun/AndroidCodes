@@ -1,4 +1,4 @@
-package cn.edu.bistu.cs.se.plotapp;
+package cn.edu.bistu.se.android.plotapp;
 
 /**
  * Created by hbs on 2015-11-2.

@@ -1,4 +1,4 @@
-package cn.edu.bistu.cs.se.plotapp;
+package cn.edu.bistu.se.android.plotapp;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
