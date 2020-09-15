@@ -14,12 +14,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * 启动服务
+     * @param view
+     */
     public void onButtonStartServiceClick(View view) {
         Intent intent=new Intent(MainActivity.this,MyService.class);
         intent.putExtra("num",10);
         startService(intent);
     }
 
+    /**
+     * 停止服务
+     * @param view
+     */
     public void onButtonStopServiceClick(View view) {
         Intent intent=new Intent(MainActivity.this,MyService.class);
         stopService(intent);
